@@ -1,5 +1,6 @@
 #!/bin/bash
 
+LOGFILE="bkp.log"
 BASE=/home/$USER/
 DIR=$1
 
@@ -40,6 +41,7 @@ else
 	PREFIX="bkp"
 	DEVICE="$HOSTNAME"
 	NOW=$(date +%Y-%m-%d)
+	NOW_EXACT=$(date +%Y-%m-%d" "%H:%M:%S)
 	EXTENSION="zip"
 	FILE=$PREFIX"_"$DEVICE"_"$DIR"_"$NOW"."$EXTENSION
 	
@@ -50,6 +52,12 @@ else
 	DIV=1024
 	FILESIZE=$(stat -c%s "$FILE")
 	let "SIZE = $FILESIZE / $DIV"
-	
-	echo "created $FILE ($SIZE MB)"
+	MESSAGE="created $FILE ($SIZE MB)"
+	echo $MESSAGE
+	if [ ! -e "$LOGFILE" ]
+	then
+		echo "# GENERATED BACKUP LOGFILE" >> $LOGFILE
+		echo "#------------------------------" >> $LOGFILE
+	fi
+	echo $NOW_EXACT" : "$MESSAGE >> $LOGFILE
 fi
