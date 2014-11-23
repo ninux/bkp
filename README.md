@@ -11,3 +11,4 @@ Personal backup script
 * [use last dirname in path](http://stackoverflow.com/questions/3294072/bash-get-last-dirname-filename-in-a-file-path-argument)
 * [use username as variable](http://stackoverflow.com/questions/3294072/bash-get-last-dirname-filename-in-a-file-path-argument)
 * [math in bash](http://linux.about.com/od/Bash_Scripting_Solutions/a/Arithmetic-In-Bash.htm)
+* [check arguments](http://stackoverflow.com/questions/59838/check-if-a-directory-exists-in-a-shell-script)
