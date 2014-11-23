@@ -45,9 +45,8 @@ else
 	EXTENSION="zip"
 	FILE=$PREFIX"_"$DEVICE"_"$DIR"_"$NOW"."$EXTENSION
 	
-	{
-		zip -r $FILE $BASE$DIR
-	} &> /dev/null
+	# create zip and suppress output
+	{ zip -r $FILE $BASE$DIR } &> /dev/null
 	
 	DIV=1024
 	FILESIZE=$(stat -c%s "$FILE")
