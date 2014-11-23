@@ -1,10 +1,19 @@
 #!/bin/bash
 
-base=/home/$USER/
-directory=$1
-prefix="bkp"
-device="$HOSTNAME"
-now=$(date +%Y-%m-%d)
-file=$prefix"_"$device"_"$directory"_"$now".test"
+BASE=/home/$USER/
+DIR=$1
+PREFIX="bkp"
+DEVICE="$HOSTNAME"
+NOW=$(date +%Y-%m-%d)
+EXTENSION="zip"
+FILE=$PREFIX"_"$DEVICE"_"$DIR"_"$NOW"."$EXTENSION
 
-touch $file
+{
+	zip -r $FILE $BASE$DIR
+} &> /dev/null
+
+DIV=1024
+FILESIZE=$(stat -c%s "$FILE")
+let "SIZE = $FILESIZE / $DIV"
+
+echo "created $FILE ($SIZE MB)"
